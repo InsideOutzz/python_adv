@@ -1,0 +1,5 @@
+@app.get reads data from a source.
+
+@app.put updates the source with new data.
+
+An API (Application Programming Interface) is a set of rules and protocols that lets different software programs talk to each other.
