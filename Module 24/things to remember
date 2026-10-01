@@ -1,0 +1,5 @@
+sqlite is used to create databases and is made in CD
+INSERT is used to, well, insert stuff into the db
+SELECT is to select something in the database
+cursor is an object that lets us update and change stuff in the database.
+If you're not changing anything in the database, it's preferred to close it.
