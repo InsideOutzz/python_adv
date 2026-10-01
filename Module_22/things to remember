@@ -1,0 +1,11 @@
+CRUD will be used for personal project, so stay sharp
+
+pydantic is a library used to create tables in the database
+
+BaseModel basically sets the foundation for the table and acts like an ancestor to whoever uses it
+(gives the items inside it to the class or whatever)
+
+cls => class, v => value
+
+the "try-catch" is mainly used to identify errors in the software or app
+
