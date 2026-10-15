@@ -1,0 +1,8 @@
+pathlib is a library used to see the location of a file
+parent is the folder your files and you are currently in
+.env is a file that includes a 'secret key' that is used to be able to make requests changes
+in backend
+split() separates a string using "," for example:
+    ("don, hi")
+    split(",")
+    ("don","hi")
