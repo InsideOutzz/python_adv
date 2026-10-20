@@ -7,7 +7,7 @@ from pydantic import BaseModel
 from typing import Optional
 from dotenv import load_dotenv
 import os
-from app.database import get_db, init_db
+from database import get_db, init_db
 
 load_dotenv()
 
@@ -33,4 +33,24 @@ def create_items(item:Item):
     with get_db() as conn:
         cursor = conn.execute("""INSERT INTO items(name,description) VAlUES(?,?)""",
         (item.name, item.description)
-                              )
+        )
+        return{"id":cursor.lastrowid, **item.model_dump()}
+@app.get("/items/", dependencies=[Depends(check_key())])
+def get_item(item_id:int):
+    with get_db() as conn:
+        row = conn.execute("SELECT * FROM items WHERE id=?", (item_id)).fetchone()
+
+        if not row:
+            raise HTTPException(404, "item not found")
+        return [dict(row)]
+
+    @app.put("items/{item_id}", dependencies=[Depends(check_key())])
+    def update_item(item_id:int, item:Item):
+        with get_db() as conn:
+            cursor = conn.execute(
+                """UPDATE items SET name = ? ,description=?""",(item.name,item.description,item.id)
+            )
+            if cursor.rowcount == 0:
+                raise HTTPException (404, "no items found!")
+            return {id: item_id, **item.model_dump()}
+#for updating stuff#
