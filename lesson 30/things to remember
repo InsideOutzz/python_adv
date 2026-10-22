@@ -1,0 +1,2 @@
+html.parser basically inspects HTML files and looks for specific things with
+soup.find()
