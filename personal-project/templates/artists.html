@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Artists | Atelier{% endblock %}
+{% block crumb %}ARTISTS{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">THE PEOPLE BEHIND THE WORK</p><h1>Artists</h1><p class="subheading">Manage the creative minds in your gallery.</p></div></div>
+<div class="management-layout">
+  <section class="panel form-panel"><p class="eyebrow">NEW CONTRIBUTOR</p><h2>Add an artist</h2><form action="{{ url_for('add_artist') }}" method="post"><label for="artist-name">Artist name</label><input id="artist-name" name="name" placeholder="e.g. Claude Monet" required><button class="button dark full" type="submit">Add artist <span>＋</span></button></form><p class="form-hint">Artist names must not be empty.</p></section>
+  <section class="panel list-panel"><div class="panel-heading"><div><p class="eyebrow">DIRECTORY</p><h2>All artists <span class="count">{{ artists|length }}</span></h2></div><input class="search" data-search="artist-row" placeholder="Search artists..." aria-label="Search artists"></div>
+  <div class="artist-list">
+    {% for artist in artists %}
+    <div class="artist-row" data-search-text="{{ artist['name']|lower }}">
+      <div class="artist-avatar">{{ artist['name'][:1]|upper }}</div><div class="artist-info"><strong>{{ artist['name'] }}</strong><small>Artist · ID {{ artist['id'] }}</small></div>
+      <div class="row-actions"><button class="icon-button" type="button" data-edit="{{ artist['id'] }}" title="Edit artist">✎</button><form action="{{ url_for('remove_artist', artist_id=artist['id']) }}" method="post" onsubmit="return confirm('Delete this artist? Artists with assigned artworks cannot be deleted.')"><button class="icon-button danger" title="Delete artist">×</button></form></div>
+      <form class="inline-edit hidden" id="edit-{{ artist['id'] }}" action="{{ url_for('edit_artist', artist_id=artist['id']) }}" method="post"><input name="name" value="{{ artist['name'] }}" required><button class="button small dark">Save</button><button class="button small light" type="button" data-cancel="{{ artist['id'] }}">Cancel</button></form>
+    </div>
+    {% else %}<div class="empty-state">No artists yet. Add your first artist using the form.</div>{% endfor %}
+  </div></section>
+</div>
+{% endblock %}
