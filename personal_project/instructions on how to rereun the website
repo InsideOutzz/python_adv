@@ -1,0 +1,6 @@
+press Ctrl+C to rerun the terminal
+Afterwards, run these lines:
+
+cd $HOME\Desktop\painting-shop
+venv\Scripts\Activate.ps1
+flask --app app run

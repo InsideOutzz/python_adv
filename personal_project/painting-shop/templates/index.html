@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ site.artist }}</h1>
+<p class="lede">Original paintings. Each one is made once and sold once.</p>
+<ul class="wall">
+{% for p in paintings %}
+  <li>
+    <div class="art"><img src="{{ url_for('static', filename='paintings/' + p.image) }}" alt="{{ p.title }}" loading="lazy"></div>
+    <div class="plate">
+      <h2>{{ p.title }}</h2>
+      <p>{{ p.size }}, {{ p.medium }}</p>
+      {% if p.sold %}<p class="sold">Sold</p>
+      {% else %}<form method="post" action="{{ url_for('buy', pid=p.id) }}"><button>Buy for {{ symbol }}{{ p.price }}</button></form>{% endif %}
+    </div>
+  </li>
+{% endfor %}
+</ul>
+<footer class="plate"><p>Questions about a painting or shipping? <a href="mailto:{{ site.email }}">{{ site.email }}</a></p></footer>
+{% endblock %}

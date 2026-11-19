@@ -1,0 +1,6 @@
+[
+  {"id": "evening-field", "title": "Evening Field", "size": "60 × 80 cm", "medium": "Oil on canvas", "price": 420, "image": "study-1.svg"},
+  {"id": "blue-room", "title": "Blue Room", "size": "50 × 32 cm", "medium": "Oil on board", "price": 380, "image": "study-2.svg"},
+  {"id": "rose-window", "title": "Rose Window", "size": "70 × 90 cm", "medium": "Oil on canvas", "price": 650, "image": "study-3.svg"},
+  {"id": "low-sun", "title": "Low Sun", "size": "40 × 26 cm", "medium": "Acrylic on board", "price": 290, "image": "study-4.svg"}
+]
